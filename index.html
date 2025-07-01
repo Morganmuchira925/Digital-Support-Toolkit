@@ -7,37 +7,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <meta name="description" content="Practical tips and best practices for students on interacting with digital help desks, troubleshooting common tech issues, and seeking support effectively.">
     <style>
         :root {
-            /* Light Mode Colors */
-            --primary: #4361ee;
-            --primary-dark: #3a56d4;
-            --secondary: #7209b7;
-            --accent: #f72585;
-            --text: #2b2d42;
-            --light-text: #8d99ae;
-            --bg-light: #f8f9fa;
-            --bg-white: #ffffff;
-            --border: #e9ecef;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --radius: 8px;
-            --transition: all 0.3s ease;
+            /* Enhanced Color Palette */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            
+            /* Base Colors */
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary: #f5576c;
+            --accent: #00f2fe;
+            --success: #43e97b;
+            --warning: #fee140;
+            --text: #1a202c;
+            --text-light: #4a5568;
+            --text-muted: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Dark Mode Colors */
         [data-theme="dark"] {
-            --primary: #4895ef;
-            --primary-dark: #3a7bd5;
-            --secondary: #b5179e;
-            --accent: #f72585;
-            --text: #f8f9fa;
-            --light-text: #adb5bd;
-            --bg-light: #212529;
-            --bg-white: #343a40;
-            --border: #495057;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --secondary: #f472b6;
+            --accent: #06b6d4;
+            --text: #f8fafc;
+            --text-light: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --border: #475569;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+            /* Footer text visibility in dark mode */
+            & footer p {
+                color: var(--text-light); /* Use a light text color for visibility */
+            }
         }
 
         * {
@@ -47,151 +75,197 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
             color: var(--text);
-            background-color: var(--bg-light);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            background: var(--bg-secondary);
+            transition: var(--transition);
+            overflow-x: hidden;
         }
 
+        /* Typography */
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
             color: var(--text);
+            letter-spacing: -0.025em;
         }
 
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 0.2em 0.4em;
+            border-radius: var(--radius-sm);
+            font-size: 0.9em;
+        }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
+        /* Enhanced Buttons */
         .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
             font-weight: 600;
-            text-align: center;
+            text-decoration: none;
             cursor: pointer;
             transition: var(--transition);
             border: none;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background-color: var(--primary);
+            background: var(--primary-gradient);
             color: white;
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
-            background-color: var(--secondary);
+            background: var(--secondary-gradient);
             color: white;
+            box-shadow: var(--shadow-md);
         }
 
         .btn-secondary:hover {
-            background-color: #5e0a99;
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            margin-left: 1rem;
-            transition: var(--transition);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-toggle:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] .theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Header */
+        /* Enhanced Header */
         header {
-            background-color: var(--bg-white);
-            box-shadow: var(--shadow);
+            background: var(--bg-primary);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 1rem 0;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
         }
 
-        .header-container {
-          display: flex;
-            flex-direction: column; /* Changed to column layout */
-            align-items: stretch;
-            gap: 0.5rem;
-        }
-
-        .top-bar {
+        .header-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            padding: 1.5rem 0;
         }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        .logo img {
-            height: 40px;
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* Navigation */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-            padding: 0;
-            margin: 0;
+            gap: 2rem;
+            align-items: center;
         }
 
         nav a {
             color: var(--text);
-            font-weight: 600;
-            padding: 0.5rem 0;
-            position: relative;
+            font-weight: 500;
             text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            position: relative;
         }
 
-        /* Hamburger menu for mobile */
+        nav a:hover {
+            background: var(--bg-tertiary);
+            transform: translateY(-1px);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             background: none;
@@ -199,153 +273,246 @@
             color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .search-container {
-            width: 100%;
-            display: flex;
-            max-width: 600px;
-        }
-
-         .search-container-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem 0;
-            background-color: var(--bg-white);
-        }
-
-        .search-container input {
-            flex: 1;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius) 0 0 var(--radius);
-            font-size: 0.9rem;
-            background-color: var(--bg-white);
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        .search-container button {
-            padding: 0.5rem 1rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .search-container button:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: var(--radius);
+        /* Enhanced Search Section */
+        .search-section {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
             position: relative;
             overflow: hidden;
         }
 
-        .hero:before {
+        .search-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-wrapper {
+            display: flex;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .search-wrapper:focus-within {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1.25rem 1.5rem;
+            border: none;
+            font-size: 1.1rem;
+            background: transparent;
+            color: var(--text);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-btn {
+            padding: 1.25rem 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 10;
+        }
+
+        .search-suggestion {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-suggestion:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .search-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgZmlsbC1ydWxlPSJub256ZXJvIj48cGF0aCBkPSJtMzYgMzQgNi0yYy0zLTctMTItMTEtMjAtNS0zIDItNCA2LTIgMTBsMTMtMXoiLz48L2c+PC9nPjwvc3ZnPg==') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Tips Sections */
+        /* Enhanced Sections */
         .section {
-            background-color: var(--bg-white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
         }
 
         .section.light {
-            background-color: var(--bg-light);
+            background: var(--bg-secondary);
             box-shadow: none;
+            border: 1px solid var(--border);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .section-header h2 {
             position: relative;
             display: inline-block;
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
         }
 
-        .section-header h2:after {
+        .section-header h2::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
 
         .section-header p {
-            color: var(--light-text);
+            color: var(--text-light);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 1rem auto 0;
+            font-size: 1.1rem;
         }
 
-        /* Accordion */
+        /* Enhanced Accordion */
         .accordion {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .accordion-item {
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             overflow: hidden;
             transition: var(--transition);
-            background-color: var(--bg-white);
+            background: var(--bg-primary);
         }
 
         .accordion-item:hover {
             border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .accordion-header {
-            background-color: var(--bg-white);
-            padding: 1.25rem 1.5rem;
+            background: var(--bg-primary);
+            padding: 1.5rem 2rem;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -353,256 +520,361 @@
             cursor: pointer;
             border: none;
             text-align: left;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
         }
 
         .accordion-header h3 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text);
+            font-weight: 600;
         }
 
         .accordion-icon {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             transition: var(--transition);
             color: var(--primary);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
         }
 
         .accordion-header.active .accordion-icon {
             transform: rotate(45deg);
-            color: var(--accent);
+            background: var(--primary);
+            color: white;
         }
 
         .accordion-content {
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background-color: var(--bg-white);
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--bg-primary);
             border-top: 1px solid var(--border);
         }
 
         .accordion-content-inner {
-            padding: 0 0 1.5rem 0;
+            padding: 2rem 0;
         }
 
         .accordion-content.show {
-            max-height: 1000px;
+            max-height: 2000px;
         }
 
         .accordion-content ul, .accordion-content ol {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
+            padding-left: 2rem;
+            margin: 1.5rem 0;
         }
 
         .accordion-content li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
         }
 
-        .tip-source {
-            font-style: italic;
-            color: var(--light-text);
+        .accordion-content li strong {
+            color: var(--primary);
+        }
+
+        /* Enhanced Tip Cards */
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--success-gradient);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tip-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .tip-card h4 i {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+        }
+
+        /* Status Indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
             font-size: 0.9rem;
-            text-align: right;
-            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .status-urgent {
+            background: var(--warning-gradient);
+            color: white;
+        }
+
+        .status-success {
+            background: var(--success-gradient);
+            color: white;
+        }
+
+        .status-info {
+            background: var(--accent-gradient);
+            color: white;
         }
 
         /* Contact Section */
         .contact-section {
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0;
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
         }
 
         .contact-section p {
             max-width: 800px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .contact-email {
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
         }
 
         .contact-email a {
             color: var(--primary);
             font-weight: 600;
+            text-decoration: none;
         }
 
         /* Footer */
         footer {
-            background-color: var(--text);
+            background: var(--text);
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
         }
 
         footer p {
-            margin: 0.5rem 0;
-            color: white;
+            margin: 0.75rem 0;
+            color: rgba(255, 255, 255, 0.8); /* Default light color for footer text */
         }
 
-        /* Additional Tips */
-        .tip-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .tip-card {
-            background-color: var(--bg-white);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .tip-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .tip-card h4 {
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tip-card h4 i {
-            font-size: 1.2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .header-container {
-                flex-direction: row;
-                align-items: center;
+        /* Enhanced Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
             }
-            .top-bar {
-                flex-wrap: wrap;
+            
+            .tip-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
+        }
 
+        @media (max-width: 768px) {
+            .header-main {
+                padding: 1rem 0;
+            }
+            
             nav ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
+                display: none; /* Hidden by default */
+                flex-direction: column; /* Stacks when shown */
                 position: absolute;
-                top: 80px;
+                top: 100%;
                 left: 0;
-                background-color: var(--bg-white);
-                padding: 1rem;
-                box-shadow: var(--shadow);
-                z-index: 999;
+                right: 0;
+                background: var(--bg-primary);
+                padding: 2rem;
+                box-shadow: var(--shadow-lg);
+                gap: 1rem; /* Smaller gap when stacked */
             }
 
             nav ul.show {
-                display: flex;
+                display: flex; /* Shows when active */
             }
 
             .hamburger {
                 display: block;
             }
 
-            .search-container {
-                max-width: 100%;
-                order: 3;
-                width: 100%;
-                margin-top: 1rem;
+            .search-section {
+                padding: 1.5rem 0;
             }
-            .search-container-wrapper {
-                order: 3;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.3rem; }
 
             .hero {
-                padding: 3rem 0;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
+                padding: 4rem 0;
+                margin: 1rem 0;
             }
 
             .section {
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
             }
-        }
 
-        @media (max-width: 576px) {
             .accordion-header {
-                padding: 1rem;
+                padding: 1.25rem 1.5rem;
             }
 
             .accordion-content {
-                padding: 0 1rem;
+                padding: 0 1.5rem;
             }
 
             .tip-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .search-wrapper {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                border-radius: 0;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-   <header>
-    <div class="container header-container">
-        <div class="top-bar">
-            <div class="logo">
-                <img src="Context_Logo2.png" alt="Context Expert Agencies Ltd">
-                <span class="logo-text">Digital Support Toolkit</span>
-            </div>
-            
-            <nav>
-                <button class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <header>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="logo-text">Digital Support Toolkit</span>
+                </div>
                 
-                <ul id="navMenu">
-                    <li><a href="#get-ready">Get Ready</a></li>
-                    <li><a href="#communicate">Communicate</a></li>
-                    <li><a href="#troubleshoot">Quick Fixes</a></li>
-                    <li><a href="#more-tips">More Tips</a></li>
-                    <li><a href="#contact-us">About Us</a></li>
-                </ul>
-            </nav>
-            
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-        
-        <!-- Search bar container below the navigation -->
-        <div class="search-container-wrapper">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search tips...">
-                <button id="searchButton"><i class="fas fa-search"></i></button>
+                <nav>
+                    <button class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <ul id="navMenu">
+                        <li><a href="#get-ready">Get Ready</a></li>
+                        <li><a href="#communicate">Communicate</a></li>
+                        <li><a href="#troubleshoot">Quick Fixes</a></li>
+                        <li><a href="#advanced-tips">Advanced Tips</a></li>
+                        <li><a href="#more-tips">Pro Tips</a></li>
+                        <li><a href="#contact-us">About Us</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="nav-controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
+
+    <!-- Enhanced Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search for solutions, tips, or troubleshooting guides...">
+                    <button class="search-btn" id="searchButton">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+        </div>
+    </section>
 
     <main class="container">
-        <section class="hero">
+        <section class="hero loading">
             <div class="hero-content">
                 <h1>Mastering Digital Support</h1>
-                <p>Your comprehensive toolkit for navigating tech challenges and getting the help you need efficiently</p>
-                <a href="#get-ready" class="btn btn-primary">Get Started</a>
+                <p>Your comprehensive toolkit for navigating tech challenges and getting the help you need efficiently. From basic troubleshooting to advanced problem-solving strategies.</p>
+                <a href="#get-ready" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Get Started
+                </a>
             </div>
         </section>
 
-        <section id="get-ready" class="section">
+        <section id="get-ready" class="section animate-on-scroll">
             <div class="section-header">
                 <h2>Get Ready Before You Ask</h2>
                 <p>Preparation is key to getting effective help quickly. Follow these steps before reaching out for support.</p>
@@ -623,8 +895,12 @@
                                 <li><strong>Check for Outages:</strong> Ask classmates or check online if others are experiencing similar issues.</li>
                                 <li><strong>Power Status:</strong> Ensure your device has sufficient battery or is properly plugged in.</li>
                                 <li><strong>Update Status:</strong> Check for and install any available system or software updates.</li>
+                                <li><strong>Clear Cache:</strong> Clear browser cache and cookies for web-related issues.</li>
                             </ul>
-                            <p class="tip-source">Source: Common IT Help Desk Best Practices</p>
+                            <div class="status-indicator status-info">
+                                <i class="fas fa-lightbulb"></i>
+                                Pro Tip: Create a "restart checklist" and follow it systematically
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -642,408 +918,499 @@
                                 <li><strong>Software Versions:</strong> OS version and application versions (e.g., "Windows 11 22H2", "Chrome v115")</li>
                                 <li><strong>Error Messages:</strong> Exact wording of any error messages (copy/paste if possible)</li>
                                 <li><strong>Timeline:</strong> When the problem started and any changes made around that time</li>
-                                <li><strong>Troubleshooting Steps:</strong> What you've already tried and the results</li>
+                                <li><strong>Platform:</strong> Is the issue device-specific (laptop, phone), platform-specific (Windows, macOS), or browser-specific (Chrome, Firefox)? Does it affect a specific platform and if it's affecting other applications or services.</li>
+                                <li><strong>Steps Taken:</strong> List everything you've already tried (e.g., "I've restarted my laptop, checked the Wi-Fi cable, and cleared my browser cache").</li>
+                                <li><strong>Screenshots/Videos:</strong> Visuals are incredibly helpful. Capture screenshots of error messages or short videos demonstrating the issue.</li>
                             </ul>
-                            <p class="tip-source">Source: University IT Support Guidelines</p>
+                            <div class="status-indicator status-success">
+                                <i class="fas fa-check-circle"></i>
+                                Be specific, precise, and concise in your descriptions.
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <h3>Document with Screenshots & Videos</h3>
+                        <h3>Know Your Support Channels</h3>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>Visual documentation can dramatically improve support understanding:</p>
+                            <p>Different issues might require different support channels. Understand where to go for help:</p>
                             <ul>
-                                <li><strong>Screenshots:</strong> Capture error messages, unexpected behavior, or system information
-                                    <ul>
-                                        <li><i class="fab fa-windows"></i> Windows: <code>Win + Shift + S</code> for snipping tool</li>
-                                        <li><i class="fab fa-apple"></i> Mac: <code>Cmd + Shift + 4</code> for selection</li>
-                                        <li><i class="fas fa-mobile-alt"></i> Phones: Power + Volume Down (varies by device)</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Screen Recording:</strong> For intermittent issues, record a short video (15-30 seconds)</li>
-                                <li><strong>Annotation:</strong> Use markup tools to highlight important areas in your screenshots</li>
+                                <li><strong>Knowledge Base/FAQ:</strong> Often the fastest way to find answers to common questions.</li>
+                                <li><strong>Online Chat:</strong> Good for quick queries or when you need immediate, interactive help.</li>
+                                <li><strong>Email Support:</strong> Best for non-urgent issues that require detailed explanations and attachments.</li>
+                                <li><strong>Phone Support:</strong> For urgent, complex issues or when real-time conversation is essential.</li>
+                                <li><strong>Walk-in/On-site Support:</strong> For hardware issues or when remote troubleshooting isn't sufficient.</li>
                             </ul>
-                            <p class="tip-source">Source: Digital Communication Best Practices</p>
+                            <div class="status-indicator status-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Choose the most appropriate channel to avoid delays.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="communicate" class="section light">
+        <section id="communicate" class="section animate-on-scroll light">
             <div class="section-header">
-                <h2>Communicate Clearly</h2>
-                <p>Effective communication ensures your support request is understood and addressed quickly.</p>
+                <h2>Communicate Effectively</h2>
+                <p>Clear and concise communication ensures support understands your problem and can offer the best solution.</p>
             </div>
 
             <div class="accordion">
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <h3>Craft an Effective Subject Line</h3>
+                        <h3>Describe the Problem Clearly</h3>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>Your subject line determines how quickly and effectively your request is handled:</p>
+                            <p>When you contact support, provide a clear, detailed, and concise description:</p>
                             <ul>
-                                <li><strong>Be Specific:</strong> "Can't Access Online Course Materials After Update" instead of "Help!"</li>
-                                <li><strong>Include Key Details:</strong> Mention the software and platform (e.g., "Zoom Audio Issues on Android")</li>
-                                <li><strong>Urgency When Needed:</strong> "URGENT: Assignment Due Today - File Corrupted" (use sparingly)</li>
-                                <li><strong>Avoid Vague Terms:</strong> "Problem", "Issue", or "Doesn't Work" without context</li>
+                                <li><strong>What happened?</strong> Explain the specific action you were trying to perform.</li>
+                                <li><strong>What did you expect to happen?</strong> Describe the normal behavior.</li>
+                                <li><strong>What actually happened?</strong> Detail the unexpected outcome, including any error messages.</li>
+                                <li><strong>When did it start?</strong> Provide a timeframe.</li>
+                                <li><strong>Has anything changed recently?</strong> New software, updates, hardware?</li>
+                                <li><strong>Can you reproduce it?</strong> If so, provide exact steps to reproduce the issue.</li>
                             </ul>
-                            <div class="tip-grid">
-                                <div class="tip-card">
-                                    <h4><i class="fas fa-check-circle"></i> Good Examples</h4>
-                                    <ul>
-                                        <li>"Blackboard Login Fails on Safari Browser"</li>
-                                        <li>"Word Crashes When Adding Tables - Windows 11"</li>
-                                    </ul>
-                                </div>
-                                <div class="tip-card">
-                                    <h4><i class="fas fa-times-circle"></i> Poor Examples</h4>
-                                    <ul>
-                                        <li>"Help needed!!!"</li>
-                                        <li>"My computer is broken"</li>
-                                    </ul>
-                                </div>
+                            <div class="status-indicator status-info">
+                                <i class="fas fa-comments"></i>
+                                Imagine you're explaining it to someone who knows nothing about your setup.
                             </div>
-                            <p class="tip-source">Source: Professional Communication Standards</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <h3>Structure Your Message Effectively</h3>
+                        <h3>Be Patient and Polite</h3>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>A well-organized message helps support staff understand and address your issue quickly:</p>
-                            <ol>
-                                <li><strong>Greeting:</strong> Polite opening (e.g., "Hello Support Team,")</li>
-                                <li><strong>Problem Summary:</strong> One-sentence description of the core issue</li>
-                                <li><strong>Detailed Description:</strong> Include all relevant technical details</li>
-                                <li><strong>Troubleshooting Attempts:</strong> What you've tried and the results</li>
-                                <li><strong>Attachments:</strong> Reference any screenshots or videos included</li>
-                                <li><strong>Request:</strong> Clearly state what help you need</li>
-                                <li><strong>Closing:</strong> Polite sign-off (e.g., "Thank you for your assistance")</li>
-                            </ol>
-                            <div class="tip-card">
-                                <h4><i class="fas fa-lightbulb"></i> Pro Tip</h4>
-                                <p>Write your message in a text editor first to check for clarity and completeness before sending.</p>
+                            <p>Support agents are there to help you. A positive attitude goes a long way:</p>
+                            <ul>
+                                <li><strong>Be respectful:</strong> Even if you're frustrated, maintain a polite tone.</li>
+                                <li><strong>Be patient:</strong> Some issues take time to diagnose and resolve.</li>
+                                <li><strong>Follow instructions:</strong> Carefully follow any steps the support agent provides.</li>
+                                <li><strong>Avoid interruptions:</strong> Let the agent finish their thoughts or instructions.</li>
+                                <li><strong>Express gratitude:</strong> Thank them for their help, even if the issue isn't immediately resolved.</li>
+                            </ul>
+                            <div class="status-indicator status-success">
+                                <i class="fas fa-handshake"></i>
+                                A little kindness can lead to faster and more effective assistance.
                             </div>
-                            <p class="tip-source">Source: Technical Writing Best Practices</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <h3>Provide Feedback (and close the loop)</h3>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Once your issue is resolved, or if you find a solution yourself, let the support team know:</p>
+                            <ul>
+                                <li><strong>Confirm resolution:</strong> Reply to the ticket or email to confirm the issue is fixed.</li>
+                                <li><strong>Provide details if you found the solution:</strong> This helps the support team and other users.</li>
+                                <li><strong>Offer suggestions:</strong> If you have constructive feedback on the support process, share it politely.</li>
+                            </ul>
+                            <div class="status-indicator status-info">
+                                <i class="fas fa-reply-all"></i>
+                                Closing the loop helps the support team improve and keeps records accurate.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="troubleshoot" class="section">
+        <section id="troubleshoot" class="section animate-on-scroll">
             <div class="section-header">
-                <h2>Quick Fixes for Common Issues</h2>
-                <p>Simple solutions for frequent tech problems you can try yourself.</p>
+                <h2>Quick Fixes & Self-Troubleshooting</h2>
+                <p>Many common issues can be resolved with simple troubleshooting steps. Try these before escalating.</p>
             </div>
 
             <div class="accordion">
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <h3>Blue Screen of Death (BSOD)</h3>
+                        <h3>The Universal Restart</h3>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>When you see the dreaded blue screen:</p>
-                            <ol>
-                                <li><strong>Note the error code</strong> (usually at the bottom of the screen)</li>
-                                <li><strong>Restart your computer</strong> - many BSODs are one-time events</li>
-                                <li><strong>Check for overheating</strong> - clean dust from vents if needed</li>
-                                <li><strong>Update drivers</strong> - especially graphics and chipset drivers</li>
-                                <li><strong>Run Windows Memory Diagnostic</strong> if crashes continue</li>
-                            </ol>
-                            <p class="tip-source">Source: Microsoft Support Guidelines</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <h3>Removing a Computer Virus</h3>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>If you suspect malware infection:</p>
-                            <ol>
-                                <li><strong>Disconnect from the internet</strong> to prevent data theft</li>
-                                <li><strong>Boot into Safe Mode</strong> (F8 during startup)</li>
-                                <li><strong>Run your antivirus software</strong> with full system scan</li>
-                                <li><strong>Use malware removal tools</strong> like Malwarebytes</li>
-                                <li><strong>Reset browsers</strong> to remove malicious extensions</li>
-                                <li><strong>Change all passwords</strong> after cleanup</li>
-                            </ol>
-                            <p class="tip-source">Source: Cybersecurity Best Practices</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <h3>Locked Out of User Account</h3>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>When you can't log in:</p>
+                            <p>It's cliché for a reason: restarting often fixes many temporary glitches.</p>
                             <ul>
-                                <li><strong>Check Caps Lock</strong> - passwords are case-sensitive</li>
-                                <li><strong>Use password reset options</strong> (email or SMS recovery)</li>
-                                <li><strong>Try old passwords</strong> - some systems remember previous ones</li>
-                                <li><strong>Contact admin</strong> if it's a work/school account</li>
-                                <li><strong>For local accounts</strong>, use password reset disk if created</li>
+                                <li><strong>For computers/laptops:</strong> Save your work, then perform a full shutdown and restart. Not just a sleep!</li>
+                                <li><strong>For phones/tablets:</strong> Power off completely, wait 10 seconds, then power on.</li>
+                                <li><strong>For network issues:</strong> Unplug your modem and router for 30 seconds, then plug them back in. Wait 5 minutes for them to fully reboot.</li>
+                                <li><strong>For software:</strong> Close the application entirely, and then reopen it.</li>
                             </ul>
-                            <p class="tip-source">Source: IT Support Procedures</p>
+                            <div class="status-indicator status-success">
+                                <i class="fas fa-redo-alt"></i>
+                                This often clears temporary memory issues and refreshes connections.
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <h3>Slow Computer Performance</h3>
+                        <h3>Check Your Connections (Physical & Digital)</h3>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <div class="accordion-content-inner">
-                            <p>To speed up a sluggish system:</p>
-                            <ol>
-                                <li><strong>Close unused programs</strong> in Task Manager</li>
-                                <li><strong>Check for malware</strong> with antivirus scan</li>
-                                <li><strong>Free up disk space</strong> - delete temporary files</li>
-                                <li><strong>Disable startup programs</strong> in Task Manager</li>
-                                <li><strong>Add more RAM</strong> if frequently running out of memory</li>
-                                <li><strong>Consider SSD upgrade</strong> for older hard drives</li>
-                            </ol>
-                            <p class="tip-source">Source: System Optimization Guides</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <h3>Printer Not Working</h3>
-                        <span class="accordion-icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Basic printer troubleshooting:</p>
+                            <p>Ensure everything is plugged in and connected correctly.</p>
                             <ul>
-                                <li><strong>Check connections</strong> - power and USB/network cables</li>
-                                <li><strong>Restart printer and computer</strong></li>
-                                <li><strong>Verify paper and ink levels</strong></li>
-                                <li><strong>Clear print queue</strong> in Devices and Printers</li>
-                                <li><strong>Reinstall printer drivers</strong> if needed</li>
-                                <li><strong>Test with different document</strong> to rule out file issues</li>
+                                <li><strong>Power cables:</strong> Firmly plug in all power cords to both the device and the wall outlet.</li>
+                                <li><strong>USB devices:</strong> Unplug and re-plug USB devices (keyboard, mouse, external drives). Try a different USB port.</li>
+                                <li><strong>Network cables (Ethernet):</strong> Ensure the cable is securely plugged into both your device and the router/wall jack.</li>
+                                <li><strong>Wi-Fi:</strong> Double-check you're connected to the correct Wi-Fi network and that the password is correct. Toggle Wi-Fi off and on.</li>
+                                <li><strong>Bluetooth:</strong> Ensure Bluetooth is enabled on both devices and they are paired correctly.</li>
                             </ul>
-                            <p class="tip-source">Source: Printer Manufacturer Guidelines</p>
+                            <div class="status-indicator status-warning">
+                                <i class="fas fa-plug"></i>
+                                Loose connections are a surprisingly common cause of problems.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <h3>Is It Just You?</h3>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Sometimes, the issue isn't with your device but with a service or wider outage.</p>
+                            <ul>
+                                <li><strong>Ask a friend/classmate:</strong> See if they're experiencing the same issue with the same service (e.g., "Is Canvas down for you too?").</li>
+                                <li><strong>Check official status pages:</strong> Many online services (Google, Microsoft, Canvas) have status pages indicating outages. A quick search for "[service name] status" usually finds it.</li>
+                                <li><strong>DownDetector:</strong> Websites like DownDetector.com collect user reports on service outages.</li>
+                            </ul>
+                            <div class="status-indicator status-info">
+                                <i class="fas fa-users"></i>
+                                Knowing if it's a widespread issue saves you time and effort.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="more-tips" class="section light">
+        <section id="advanced-tips" class="section animate-on-scroll light">
             <div class="section-header">
-                <h2>Additional Pro Tips</h2>
-                <p>Enhance your technical support experience with these advanced strategies.</p>
+                <h2>Advanced Troubleshooting & Prevention</h2>
+                <p>Beyond the basics, these tips can help you resolve more complex issues and prevent future problems.</p>
             </div>
 
             <div class="tip-grid">
                 <div class="tip-card">
-                    <h4><i class="fas fa-history"></i> Maintain a Tech Journal</h4>
-                    <p>Keep a log of recurring issues, solutions that worked, and important technical details about your devices. This creates a personal knowledge base for future reference.</p>
+                    <h4><i class="fas fa-history"></i> System Restore/Version History</h4>
+                    <p>For software issues or unexpected system changes, consider rolling back to a previous state.</p>
+                    <ul>
+                        <li><strong>Windows System Restore:</strong> If a recent update or software installation caused problems, restore your system to a point before the issue began.</li>
+                        <li><strong>macOS Time Machine:</strong> Restore your Mac from a previous backup if an application or system setting is misbehaving.</li>
+                        <li><strong>Cloud Document Version History:</strong> For issues with documents (Google Docs, Microsoft 365), check the version history to revert to an earlier, working version.</li>
+                    </ul>
                 </div>
                 <div class="tip-card">
-                    <h4><i class="fas fa-book"></i> Learn Basic Terminology</h4>
-                    <p>Understand terms like IP address, bandwidth, cache, and driver. This helps you communicate more effectively with support teams and understand their instructions.</p>
+                    <h4><i class="fas fa-shield-alt"></i> Run Scans & Cleanups</h4>
+                    <p>Regular maintenance can prevent performance issues and security threats.</p>
+                    <ul>
+                        <li><strong>Antivirus/Malware Scan:</strong> Run a full scan regularly to detect and remove malicious software.</li>
+                        <li><strong>Disk Cleanup/Storage Management:</strong> Free up disk space by deleting temporary files, old downloads, and emptying the recycle bin.</li>
+                        <li><strong>Browser Cleanup:</strong> Clear browser cache, cookies, and extensions that might be causing conflicts or slowing down your browsing.</li>
+                    </ul>
                 </div>
                 <div class="tip-card">
-                    <h4><i class="fas fa-clock"></i> Time Your Requests</h4>
-                    <p>Contact support during off-peak hours (early mornings or late evenings) for faster response times. Avoid end-of-month or Monday mornings when possible.</p>
+                    <h4><i class="fas fa-server"></i> Check Server Status (When Applicable)</h4>
+                    <p>For institutional services (LMS, student portals), check their specific server status pages.</p>
+                    <ul>
+                        <li>Universities and colleges often have dedicated IT status pages.</li>
+                        <li>Look for announcements on social media (e.g., Twitter accounts for IT departments).</li>
+                        <li>If you're using a specific application, check its dedicated support website for known issues.</li>
+                    </ul>
                 </div>
                 <div class="tip-card">
-                    <h4><i class="fas fa-user-friends"></i> Build Relationships</h4>
-                    <p>When you find helpful support staff, note their names. Polite follow-ups and thank-you messages can lead to better future support experiences.</p>
-                </div>
-                <div class="tip-card">
-                    <h4><i class="fas fa-file-alt"></i> Document Solutions</h4>
-                    <p>When an issue is resolved, document the steps taken. This creates a reference for future problems and helps you assist others with similar issues.</p>
-                </div>
-                <div class="tip-card">
-                    <h4><i class="fas fa-cloud"></i> Use Cloud Backups</h4>
-                    <p>Regularly back up important files to cloud services. This protects your work and makes it accessible from any device when troubleshooting.</p>
+                    <h4><i class="fas fa-cogs"></i> Reinstall or Repair Software</h4>
+                    <p>If an application is consistently crashing or behaving erratically.</p>
+                    <ul>
+                        <li><strong>Repair option:</strong> Many programs offer a "repair" option in their installer or through system settings (e.g., Windows "Add or Remove Programs").</li>
+                        <li><strong>Clean reinstall:</strong> If repair fails, uninstall the program completely, restart your device, then download the latest version from the official source and reinstall.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="contact-us" class="contact-section">
-            <h2>About Context Expert Agencies Ltd</h2>
-            <p>This Digital Support Toolkit is brought to you by Context Expert Agencies Ltd, a leading digital marketing and branding firm based in Ruiru, Kiambu County, Kenya. We specialize in helping students and professionals navigate the digital landscape effectively.</p>
-            <p>While this toolkit addresses basic support needs, we offer comprehensive services including academic writing support, web development, and strategic digital marketing solutions through our team of skilled professionals.</p>
-            <a href="https://contextexpertagencieslimited.com/" class="btn btn-secondary" target="_blank">Visit Our Website</a>
-            <p class="contact-email">Direct inquiries: <a href="mailto:info@contextexpertagencieslimited.com">info@contextexpertagencieslimited.com</a></p>
+        <section id="more-tips" class="section animate-on-scroll">
+            <div class="section-header">
+                <h2>Pro Tips for Digital Success</h2>
+                <p>Elevate your digital experience and minimize future support needs with these proactive strategies.</p>
+            </div>
+
+            <div class="tip-grid">
+                <div class="tip-card">
+                    <h4><i class="fas fa-lock"></i> Practice Good Digital Hygiene</h4>
+                    <p>Proactive measures are your best defense against many tech issues.</p>
+                    <ul>
+                        <li><strong>Strong Passwords:</strong> Use unique, complex passwords and a password manager.</li>
+                        <li><strong>Two-Factor Authentication (2FA):</strong> Enable 2FA wherever possible for added security.</li>
+                        <li><strong>Regular Backups:</strong> Back up important data regularly to cloud storage or an external drive.</li>
+                        <li><strong>Software Updates:</strong> Keep your operating system and applications updated.</li>
+                        <li><strong>Beware of Phishing:</strong> Be skeptical of suspicious emails and links.</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-book-reader"></i> Leverage Online Resources</h4>
+                    <p>The internet is a vast library of solutions. Learn how to search effectively.</p>
+                    <ul>
+                        <li><strong>Specific Error Messages:</strong> Copy and paste exact error messages into a search engine.</li>
+                        <li><strong>"How to [do something] [software/device name]":</strong> Formulate specific search queries.</li>
+                        <li><strong>Official Documentation:</strong> Always check the official support pages or manuals for your software/device.</li>
+                        <li><strong>Forums & Communities:</strong> Tech forums (e.g., Stack Overflow, Reddit's r/techsupport) can be goldmines.</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-diagnose"></i> Document Your Solutions</h4>
+                    <p>Keep a personal log of issues you've faced and how you resolved them.</p>
+                    <ul>
+                        <li><strong>Simple Spreadsheet/Doc:</strong> Record the date, problem, symptoms, steps taken, and resolution.</li>
+                        <li><strong>Screenshots:</strong> Include relevant screenshots for visual recall.</li>
+                        <li><strong>Future Reference:</strong> This log becomes a valuable personal knowledge base, saving you time.</li>
+                        <li><strong>Share with Others:</strong> You can also help friends or classmates with similar problems.</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h4><i class="fas fa-robot"></i> Explore AI/Chatbot Assistants</h4>
+                    <p>Many platforms now offer AI-powered assistance for immediate answers.</p>
+                    <ul>
+                        <li><strong>Initial Triage:</strong> Chatbots can often answer common questions or guide you to relevant knowledge base articles.</li>
+                        <li><strong>Keywords:</strong> Use clear and concise keywords in your queries to the chatbot.</li>
+                        <li><strong>Escalation:</strong> If the chatbot can't help, it usually provides an option to connect with a human agent.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-us" class="section animate-on-scroll">
+            <div class="section-header">
+                <h2>About Context Expert Agencies Ltd</h2>
+                <p>We are dedicated to empowering students with the knowledge and tools needed to confidently navigate the digital landscape.</p>
+            </div>
+            <div class="contact-section">
+                <p>Our mission is to bridge the gap between users and technology, making digital experiences smoother and more productive. This toolkit is one of our initiatives to foster independent problem-solving skills and effective communication with support teams.</p>
+                <a href="mailto:info@contextexpert.com" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Email Us: info@contextexpert.com
+                </a>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> Context Expert Agencies Ltd. All rights reserved.</p>
-            <p>Ruiru, Kiambu County, Kenya</p>
+            <p>&copy; 2025 Context Expert Agencies Ltd. All rights reserved.</p>
+            <p>Designed and Developed with <i class="fas fa-heart" style="color: #f5576c;"></i> by Your Team</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set current year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+            themeToggle.querySelector('i').classList.toggle('fa-sun');
+            themeToggle.querySelector('i').classList.toggle('fa-moon');
+            localStorage.setItem('theme', document.documentElement.dataset.theme);
+        });
 
-            // Hamburger menu toggle
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-            
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('show');
-            });
-
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('themeToggle');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-            const currentTheme = localStorage.getItem('theme');
-            
-            // Check for saved theme or preferred color scheme
-            if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        // Set initial theme based on local storage or system preference
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            document.documentElement.dataset.theme = storedTheme;
+            if (storedTheme === 'dark') {
+                themeToggle.querySelector('i').classList.add('fa-sun');
+                themeToggle.querySelector('i').classList.remove('fa-moon');
             } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                themeToggle.querySelector('i').classList.add('fa-moon');
+                themeToggle.querySelector('i').classList.remove('fa-sun');
             }
-            
-            // Toggle theme on button click
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.dataset.theme = 'dark';
+            themeToggle.querySelector('i').classList.add('fa-sun');
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+        }
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+
+        // Close nav menu when a link is clicked (for mobile)
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const content = button.nextElementSibling;
+
+                // Close other open accordions
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.accordion-header').classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = 0;
+                        otherItem.querySelector('.accordion-icon').textContent = '+';
+                        otherItem.querySelector('.accordion-icon').classList.remove('active');
+                    }
+                });
+
+                // Toggle current accordion
+                button.classList.toggle('active');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    button.querySelector('.accordion-icon').textContent = '+';
+                    button.querySelector('.accordion-icon').classList.remove('active');
                 } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    button.querySelector('.accordion-icon').textContent = 'x'; // Change to 'x' for active
+                    button.querySelector('.accordion-icon').classList.add('active');
                 }
             });
+        });
 
-            // Accordion functionality
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const accordionItem = header.parentElement;
-                    const accordionContent = header.nextElementSibling;
-                    
-                    // Close other open accordions in the same section
-                    const parentSection = accordionItem.closest('.section');
-                    if (parentSection) {
-                        parentSection.querySelectorAll('.accordion-content.show').forEach(openContent => {
-                            if (openContent !== accordionContent) {
-                                openContent.classList.remove('show');
-                                openContent.previousElementSibling.classList.remove('active');
+        // Search Functionality with Suggestions
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        const contentData = [
+            { id: 'get-ready', title: 'Check the Basics First', text: 'Restart Everything, Connection Check, Check for Outages, Power Status, Update Status, Clear Cache' },
+            { id: 'get-ready', title: 'Gather Essential Information', text: 'Device Details, Software Versions, Error Messages, Timeline, Steps Taken, Screenshots/Videos' },
+            { id: 'get-ready', title: 'Know Your Support Channels', text: 'Knowledge Base/FAQ, Online Chat, Email Support, Phone Support, Walk-in/On-site Support' },
+            { id: 'communicate', title: 'Describe the Problem Clearly', text: 'What happened, What did you expect, What actually happened, When did it start, Has anything changed, Can you reproduce it' },
+            { id: 'communicate', title: 'Be Patient and Polite', text: 'Be respectful, Be patient, Follow instructions, Avoid interruptions, Express gratitude' },
+            { id: 'communicate', title: 'Provide Feedback', text: 'Confirm resolution, Provide details if you found solution, Offer suggestions' },
+            { id: 'troubleshoot', title: 'The Universal Restart', text: 'Computers, Phones, Network, Software' },
+            { id: 'troubleshoot', title: 'Check Your Connections', text: 'Power cables, USB devices, Network cables, Wi-Fi, Bluetooth' },
+            { id: 'troubleshoot', title: 'Is It Just You?', text: 'Ask a friend, Check official status pages, DownDetector' },
+            { id: 'advanced-tips', title: 'System Restore/Version History', text: 'Windows System Restore, macOS Time Machine, Cloud Document Version History' },
+            { id: 'advanced-tips', title: 'Run Scans & Cleanups', text: 'Antivirus/Malware Scan, Disk Cleanup, Browser Cleanup' },
+            { id: 'advanced-tips', title: 'Check Server Status (When Applicable)', text: 'University IT status, Social media announcements, Application support websites' },
+            { id: 'advanced-tips', title: 'Reinstall or Repair Software', text: 'Repair option, Clean reinstall' },
+            { id: 'more-tips', title: 'Practice Good Digital Hygiene', text: 'Strong Passwords, Two-Factor Authentication, Regular Backups, Software Updates, Beware of Phishing' },
+            { id: 'more-tips', title: 'Leverage Online Resources', text: 'Specific Error Messages, How to search, Official Documentation, Forums & Communities' },
+            { id: 'more-tips', title: 'Document Your Solutions', text: 'Simple Spreadsheet/Doc, Screenshots, Future Reference, Share with Others' },
+            { id: 'more-tips', title: 'Explore AI/Chatbot Assistants', text: 'Initial Triage, Keywords, Escalation' }
+        ];
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            searchSuggestions.innerHTML = '';
+
+            if (query.length > 2) {
+                const filteredSuggestions = contentData.filter(item =>
+                    item.title.toLowerCase().includes(query) || item.text.toLowerCase().includes(query)
+                );
+
+                if (filteredSuggestions.length > 0) {
+                    searchSuggestions.style.display = 'block';
+                    filteredSuggestions.forEach(item => {
+                        const suggestionDiv = document.createElement('div');
+                        suggestionDiv.classList.add('search-suggestion');
+                        suggestionDiv.innerHTML = `<strong>${item.title}</strong><br><small>${item.text.substring(0, 100)}...</small>`;
+                        suggestionDiv.addEventListener('click', () => {
+                            window.location.href = `#${item.id}`; // Scroll to the relevant section
+                            searchInput.value = item.title;
+                            searchSuggestions.style.display = 'none';
+                            // Optional: open the specific accordion item if possible
+                            const targetHeader = document.querySelector(`#${item.id} .accordion-header h3`);
+                            if (targetHeader && targetHeader.textContent.includes(item.title)) {
+                                targetHeader.parentElement.click();
                             }
                         });
-                    }
-                    
-                    // Toggle current accordion
-                    header.classList.toggle('active');
-                    accordionContent.classList.toggle('show');
-                });
-            });
-
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            
-            function performSearch() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                
-                if (searchTerm === '') {
-                    // Reset view if search is empty
-                    accordionItems.forEach(item => {
-                        item.style.display = 'block';
-                        item.querySelector('.accordion-header').classList.remove('active');
-                        item.querySelector('.accordion-content').classList.remove('show');
+                        searchSuggestions.appendChild(suggestionDiv);
                     });
-                    return;
-                }
-                
-                let hasResults = false;
-                
-                accordionItems.forEach(item => {
-                    const headerText = item.querySelector('h3').textContent.toLowerCase();
-                    const contentText = item.querySelector('.accordion-content-inner').textContent.toLowerCase();
-                    
-                    if (headerText.includes(searchTerm)) {
-                        // Header matches - show and expand
-                        item.style.display = 'block';
-                        item.querySelector('.accordion-header').classList.add('active');
-                        item.querySelector('.accordion-content').classList.add('show');
-                        hasResults = true;
-                    } else if (contentText.includes(searchTerm)) {
-                        // Content matches - show and expand
-                        item.style.display = 'block';
-                        item.querySelector('.accordion-header').classList.add('active');
-                        item.querySelector('.accordion-content').classList.add('show');
-                        hasResults = true;
-                    } else {
-                        // No match - hide
-                        item.style.display = 'none';
-                    }
-                });
-                
-                // Scroll to first result if any
-                if (hasResults) {
-                    const firstVisible = document.querySelector('.accordion-item[style="display: block;"]');
-                    if (firstVisible) {
-                        firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
                 } else {
-                    alert('No tips found matching your search.');
+                    searchSuggestions.style.display = 'none';
                 }
+            } else {
+                searchSuggestions.style.display = 'none';
             }
-            
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keyup', (e) => {
-                if (e.key === 'Enter') performSearch();
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!searchSuggestions.contains(event.target) && event.target !== searchInput) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.toLowerCase();
+            const foundItem = contentData.find(item =>
+                item.title.toLowerCase().includes(query) || item.text.toLowerCase().includes(query)
+            );
+            if (foundItem) {
+                window.location.href = `#${foundItem.id}`;
+                // Optional: open the specific accordion item if possible
+                document.querySelectorAll(`#${foundItem.id} .accordion-header h3`).forEach(header => {
+                    if (header.textContent.toLowerCase().includes(query)) {
+                        header.parentElement.click();
                     }
                 });
+            } else {
+                alert('No results found. Please try a different search term.');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"], .hero .btn').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
+        });
+
+        // Animate on scroll
+        const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, { threshold: 0.1 }); // Adjust threshold as needed
+
+        animateOnScrollElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Hero section loading animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero');
+            heroSection.classList.remove('loading');
         });
     </script>
 </body>
