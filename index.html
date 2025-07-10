@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
     <meta name="description" content="Practical tips and best practices for students on interacting with digital help desks, troubleshooting common tech issues, and seeking support effectively.">
     <style>
         :root {
@@ -810,6 +813,241 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Chatbot Styles */
+        .chatbot-toggler {
+            position: fixed;
+            bottom: 30px;
+            right: 35px;
+            outline: none;
+            border: none;
+            height: 50px;
+            width: 50px;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--primary);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        body.show-chatbot .chatbot-toggler {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-toggler span {
+            color: #fff;
+            position: absolute;
+        }
+
+        .chatbot-toggler span:last-child,
+        body.show-chatbot .chatbot-toggler span:first-child  {
+            opacity: 0;
+        }
+
+        body.show-chatbot .chatbot-toggler span:last-child {
+            opacity: 1;
+        }
+
+        .chatbot {
+            position: fixed;
+            right: 35px;
+            bottom: 90px;
+            width: 420px;
+            background: var(--bg-primary);
+            border-radius: 15px;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.5);
+            transform-origin: bottom right;
+            box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                        0 32px 64px -48px rgba(0,0,0,0.5);
+            transition: all 0.1s ease;
+            z-index: 1000;
+            border: 1px solid var(--border);
+        }
+
+        body.show-chatbot .chatbot {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .chatbot header {
+            padding: 16px 0;
+            position: relative;
+            text-align: center;
+            color: #fff;
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .chatbot header span {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            display: none;
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+
+        .chatbot header h2 {
+            font-size: 1.4rem;
+        }
+
+        .chatbot .chatbox {
+            overflow-y: auto;
+            height: 510px;
+            padding: 30px 20px 100px;
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+            border-radius: 25px;
+        }
+
+        .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 25px;
+        }
+
+        .chatbox .chat {
+            display: flex;
+            list-style: none;
+        }
+
+        .chatbox .outgoing {
+            margin: 20px 0;
+            justify-content: flex-end;
+        }
+
+        .chatbox .incoming span {
+            width: 32px;
+            height: 32px;
+            color: #fff;
+            cursor: default;
+            text-align: center;
+            line-height: 32px;
+            align-self: flex-end;
+            background: var(--primary);
+            border-radius: 4px;
+            margin: 0 10px 7px 0;
+        }
+
+        .chatbox .chat p {
+            white-space: pre-wrap;
+            padding: 12px 16px;
+            border-radius: 10px 10px 0 10px;
+            max-width: 75%;
+            color: #fff;
+            font-size: 0.95rem;
+            background: var(--primary);
+        }
+
+        .chatbox .incoming p {
+            border-radius: 10px 10px 10px 0;
+        }
+
+        .chatbox .chat p.error {
+            color: #721c24;
+            background: #f8d7da;
+        }
+
+        .chatbox .incoming p {
+            color: var(--text);
+            background: var(--bg-tertiary);
+        }
+
+        .chatbot .chat-input {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            padding: 3px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input textarea {
+            height: 55px;
+            width: 100%;
+            border: none;
+            outline: none;
+            resize: none;
+            max-height: 180px;
+            padding: 15px 15px 15px 0;
+            font-size: 0.95rem;
+            background: transparent;
+            color: var(--text);
+        }
+
+        .chat-input textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .chat-input span {
+            align-self: flex-end;
+            color: var(--primary);
+            cursor: pointer;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            visibility: hidden;
+            font-size: 1.35rem;
+        }
+
+        .chat-input textarea:valid ~ span {
+            visibility: visible;
+        }
+
+        @media (max-width: 490px) {
+            .chatbot-toggler {
+                right: 20px;
+                bottom: 20px;
+            }
+            .chatbot {
+                right: 0;
+                bottom: 0;
+                height: 100%;
+                border-radius: 0;
+                width: 100%;
+            }
+            .chatbot .chatbox {
+                height: 90%;
+                padding: 25px 15px 100px;
+            }
+            .chatbot .chat-input {
+                padding: 5px 15px;
+            }
+            .chatbot header span {
+                display: block;
+            }
+        }
+
+        /* Dark mode adjustments for chatbot */
+        [data-theme="dark"] .chatbot {
+            border: 1px solid var(--border);
+        }
+
+        [data-theme="dark"] .chatbot header {
+            background: var(--primary-dark);
+        }
+
+        [data-theme="dark"] .chatbox .outgoing p {
+            background: var(--primary-dark);
+        }
+
+        [data-theme="dark"] .chatbox .incoming span {
+            background: var(--primary-dark);
+        }
     </style>
 </head>
 <body>
@@ -1225,6 +1463,28 @@
         </div>
     </footer>
 
+    <!-- Chatbot HTML -->
+    <button class="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+        <header>
+            <h2>Digital Support Assistant</h2>
+            <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there! 👋<br>I'm your Digital Support Assistant. How can I help you with tech issues today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+    </div>
+
     <script>
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -1413,6 +1673,110 @@
             const heroSection = document.querySelector('.hero');
             heroSection.classList.remove('loading');
         });
+
+        // Chatbot functionality
+        const chatbotToggler = document.querySelector(".chatbot-toggler");
+        const closeBtn = document.querySelector(".close-btn");
+        const chatbox = document.querySelector(".chatbox");
+        const chatInput = document.querySelector(".chat-input textarea");
+        const sendChatBtn = document.querySelector(".chat-input span");
+        let userMessage = null; // Variable to store user's message
+        const inputInitHeight = chatInput.scrollHeight;
+
+        // Predefined responses for common tech support questions
+        const predefinedResponses = {
+            "restart": "A restart can solve many issues by clearing temporary files and refreshing system processes. Try these steps:\n1. Save all your work\n2. Close all applications\n3. Click Start > Power > Restart (Windows) or Apple menu > Restart (Mac)\n4. Wait for the system to fully reboot before testing your issue again.",
+            "wifi": "For Wi-Fi issues, try these steps:\n1. Restart your router (unplug for 30 seconds)\n2. Forget the network and reconnect\n3. Check if other devices can connect\n4. Move closer to the router\n5. Try a wired connection if possible",
+            "password": "If you've forgotten a password:\n1. Look for a 'Forgot Password' link on the login page\n2. Check your email for a reset link\n3. Contact your IT support if institutional credentials\n4. Never share your password with anyone!",
+            "error": "When encountering an error:\n1. Note the exact error message\n2. Check if it's reproducible\n3. Search online for the exact message\n4. Take a screenshot for support reference",
+            "slow": "For slow performance:\n1. Close unused applications\n2. Check Task Manager (Windows) or Activity Monitor (Mac) for resource-heavy processes\n3. Clear browser cache\n4. Ensure adequate storage space\n5. Consider hardware upgrades if consistently slow",
+            "update": "For update issues:\n1. Check your internet connection\n2. Ensure you have enough storage space\n3. Try updating during off-peak hours\n4. Restart your device and try again\n5. Check the vendor's status page for update server issues",
+            "default": "I'm here to help with tech support questions. Could you please provide more details about your issue? For example:\n- What were you trying to do?\n- What exactly happened?\n- Any error messages?\n- Steps you've already tried"
+        };
+
+        // Function to generate a response based on user input
+        const generateResponse = (chatElement) => {
+            const messageElement = chatElement.querySelector("p");
+            const userText = userMessage.toLowerCase();
+            
+            let responseText = predefinedResponses.default;
+            
+            if (userText.includes("restart") || userText.includes("reboot")) {
+                responseText = predefinedResponses.restart;
+            } else if (userText.includes("wifi") || userText.includes("internet") || userText.includes("connection")) {
+                responseText = predefinedResponses.wifi;
+            } else if (userText.includes("password") || userText.includes("login")) {
+                responseText = predefinedResponses.password;
+            } else if (userText.includes("error") || userText.includes("not working") || userText.includes("issue")) {
+                responseText = predefinedResponses.error;
+            } else if (userText.includes("slow") || userText.includes("lag") || userText.includes("freeze")) {
+                responseText = predefinedResponses.slow;
+            } else if (userText.includes("update") || userText.includes("upgrade") || userText.includes("install")) {
+                responseText = predefinedResponses.update;
+            }
+            
+            // Simulate typing effect
+            let i = 0;
+            let interval = setInterval(() => {
+                if (i < responseText.length) {
+                    messageElement.textContent += responseText.charAt(i);
+                    i++;
+                    chatbox.scrollTo(0, chatbox.scrollHeight);
+                } else {
+                    clearInterval(interval);
+                }
+            }, 20);
+        };
+
+        const handleChat = () => {
+            userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+            if (!userMessage) return;
+            
+            // Clear the input textarea and set its height to default
+            chatInput.value = "";
+            chatInput.style.height = `${inputInitHeight}px`;
+            
+            // Append the user's message to the chatbox
+            chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            
+            setTimeout(() => {
+                // Display "Thinking..." message while waiting for the response
+                const incomingChatLi = createChatLi("Thinking...", "incoming");
+                chatbox.appendChild(incomingChatLi);
+                chatbox.scrollTo(0, chatbox.scrollHeight);
+                generateResponse(incomingChatLi);
+            }, 600);
+        };
+
+        const createChatLi = (message, className) => {
+            // Create a chat <li> element with passed message and className
+            const chatLi = document.createElement("li");
+            chatLi.classList.add("chat", `${className}`);
+            let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+            chatLi.innerHTML = chatContent;
+            chatLi.querySelector("p").textContent = message;
+            return chatLi; // return chat <li> element
+        };
+
+        chatInput.addEventListener("input", () => {
+            // Adjust the height of the input textarea based on its content
+            chatInput.style.height = `${inputInitHeight}px`;
+            chatInput.style.height = `${chatInput.scrollHeight}px`;
+        });
+
+        chatInput.addEventListener("keydown", (e) => {
+            // If Enter key is pressed without Shift key and the window 
+            // width is greater than 800px, handle the chat
+            if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+                e.preventDefault();
+                handleChat();
+            }
+        });
+
+        sendChatBtn.addEventListener("click", handleChat);
+        closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+        chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
     </script>
 </body>
 </html>
